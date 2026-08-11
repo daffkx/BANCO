@@ -16,6 +16,6 @@ CREATE TABLE `contato`(
 CREATE TABLE `telefone`(
     `id` INT PRIMARY KEY,
     `rotulo` VARCHAR(255),
-    `numero` INT,
+    `numero` VARCHAR(255),
     `id_contato` INT, 
     FOREIGN KEY (`id_contato`) REFERENCES `contato` (`id`));

@@ -10,7 +10,7 @@ CREATE TABLE `musica`(
 
 CREATE TABLE `gravacao`(
     `id` INT PRIMARY KEY,
-    `duracao` TIME,
+    `duracao` INT,
     `id_cantor` INT,
     `id_musica` INT,
     FOREIGN KEY (`id_cantor`) REFERENCES `cantor`(`id`),

@@ -9,7 +9,7 @@ CREATE TABLE `trabalho`(
     `id` INT PRIMARY KEY,
     `titulo` VARCHAR(255),
     `arquivo` BLOB,
-    `data_entrega` DATE
+    `data_entrega` DATE,
     `nota` FLOAT,
     `id_disciplina` INT,
     FOREIGN KEY (`id_disciplina`) REFERENCES `disciplina`(`id`));

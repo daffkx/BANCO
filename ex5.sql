@@ -1,4 +1,9 @@
 #EXERCÍCIO 5
+CREATE TABLE `departamento`(
+    `id` INT PRIMARY KEY,
+    `nome` VARCHAR(255),
+    `numero` INT);
+    
 CREATE TABLE `empregado`(
     `id` INT PRIMARY KEY,
     `nome` VARCHAR(255),
@@ -8,11 +13,6 @@ CREATE TABLE `empregado`(
     `salario` FLOAT,
     `id_departamento` INT,
     FOREIGN KEY (`id_departamento`) REFERENCES `departamento`(`id`));
-
-CREATE TABLE `departamento`(
-    `id` INT PRIMARY KEY,
-    `nome` VARCHAR(255),
-    `numero` INT);
 
 CREATE TABLE `dependente`(
     `id` INT PRIMARY KEY,

@@ -11,7 +11,7 @@ CREATE TABLE `usuario`(
     `nome` VARCHAR(255),
     `cidade` VARCHAR(255),
     `idade` INT,
-    `sexo` CHAR(1)
+    `sexo` CHAR(1),
     `ctg_preferido` VARCHAR(255));
 
 CREATE TABLE `avaliacao_foto_usuario`(

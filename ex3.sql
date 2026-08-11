@@ -1,4 +1,8 @@
 #EXERCÍCIO 3
+CREATE DATABASE `prog_trabalho`;
+
+USE `prog_trabalho`;
+
 CREATE TABLE `disciplina`(
     `id` INT PRIMARY KEY,
     `ano_semestre` VARCHAR(255),

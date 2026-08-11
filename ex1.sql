@@ -1,4 +1,8 @@
 #EXERCÍCIO 1
+CREATE DATABASE `prog_contato`;
+
+USE `prog_contato`;
+
 CREATE TABLE `grupo`(
     `id` INT PRIMARY KEY,
     `nome` VARCHAR(255),

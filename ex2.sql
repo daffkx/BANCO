@@ -1,4 +1,8 @@
 #EXERCÍCIO 2
+CREATE DATABASE `prog_musica`;
+
+USE `prog_musica`;
+
 CREATE TABLE `cantor`(
     `id` INT PRIMARY KEY,
     `nome` VARCHAR(255));

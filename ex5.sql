@@ -1,4 +1,8 @@
 #EXERCÍCIO 5
+CREATE DATABASE `prog_empresa`;
+
+USE `prog_empresa`;
+
 CREATE TABLE `departamento`(
     `id` INT PRIMARY KEY,
     `nome` VARCHAR(255),

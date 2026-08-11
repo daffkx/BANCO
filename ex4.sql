@@ -1,10 +1,7 @@
 #EXERCÍCIO 4
-CREATE TABLE `foto`(
-    `id` INT PRIMARY KEY,
-    `arquivo` BLOB,
-    `formato` VARCHAR(255),
-    `id_usuario` INT,
-    FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id`));
+CREATE DATABASE `prog_app_relacionamento`;
+
+USE `prog_app_relacionamento`;
 
 CREATE TABLE `usuario`(
     `id` INT PRIMARY KEY,
@@ -13,6 +10,13 @@ CREATE TABLE `usuario`(
     `idade` INT,
     `sexo` CHAR(1),
     `ctg_preferido` VARCHAR(255));
+    
+CREATE TABLE `foto`(
+    `id` INT PRIMARY KEY,
+    `arquivo` BLOB,
+    `formato` VARCHAR(255),
+    `id_usuario` INT,
+    FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id`));
 
 CREATE TABLE `avaliacao_foto_usuario`(
     `id_foto` INT,

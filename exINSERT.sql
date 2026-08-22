@@ -41,6 +41,9 @@ ADD CONSTRAINT FOREIGN KEY (`cpfEmpregado`) REFERENCES `empregado`(`cpf`);
 ALTER TABLE `projEmp` 
 ADD CONSTRAINT FOREIGN KEY (`codProj`) REFERENCES `projeto`(`codProj`);
 
+# ------------------------------- #
+# EXERCÍCIOS DE INSERÇÃO DE DADOS #
+# ------------------------------- #
 
 #EX1 ---------
 USE `empresa`;
@@ -77,3 +80,57 @@ USE `empresa`;
 
 INSERT INTO `projeto` (`nome`,`descricao`,`preco`,`dtFim`,`dtEstimada`,`dtSolicitacao`,`cpfGerente`,`cpfCliente`)
 VALUES ('Aplicativo Financeiro','Gestão de despesas pessoais','12000.00','2025-10-30','2025-10-20','2025-09-12','444.444.444-44','222.222.222-22');
+
+#EX7 ---------
+USE `empresa`;
+
+INSERT INTO `projEmp` (`cpfEmpregado`, `codProj`,`hrTrab`)
+VALUES ('333.333.333-33', '1', '40');
+
+#EX8 ---------
+USE `empresa`;
+
+INSERT INTO `projEmp` (`cpfEmpregado`, `codProj`,`hrTrab`)
+VALUES ('444.444.444-44', '1', '20');
+
+#EX9 ---------
+USE `empresa`;
+
+INSERT INTO `projEmp` (`cpfEmpregado`, `codProj`,`hrTrab`)
+VALUES ('333.333.333-33', '2', '35');
+
+#EX10 ---------
+USE `empresa`;
+
+INSERT INTO `cliente` (`nome`,`cpf`,`telefone`)
+VALUES ('Pedro Gomes','555.555.555-55','48999887766');
+
+#EX11 ---------
+USE `empresa`;
+
+INSERT INTO `empregado` (`nome`,`cpf`,`cargo`)
+VALUES ('Lucas Andrade','666.666.666-66','Desenvolvedor Backend');
+
+#EX12 ---------
+USE `empresa`;
+
+INSERT INTO `projeto` (`nome`,`descricao`,`preco`,`dtFim`,`dtEstimada`,`dtSolicitacao`,`cpfGerente`,`cpfCliente`)
+VALUES ('Site Institucional','Página para empresa local','5000.00','2025-11-01','2025-10-25','2025-09-20','444.444.444-44','555.555.555-55');
+
+#EX13 ---------
+USE `empresa`;
+
+INSERT INTO `projEmp` (`cpfEmpregado`, `codProj`,`hrTrab`)
+VALUES ('666.666.666-66', '3', '50');
+
+#EX14 ---------
+USE `empresa`;
+
+INSERT INTO `cliente` (`nome`,`cpf`,`telefone`)
+VALUES ('Fernanda Lima','777.777.777-77','48991231231');
+
+#EX15 ---------
+USE `empresa`;
+
+INSERT INTO `projeto` (`nome`,`descricao`,`preco`,`dtFim`,`dtEstimada`,`dtSolicitacao`,`cpfGerente`,`cpfCliente`)
+VALUES ('Controle de Estoque','Sistema para loja de roupas','8000.00','2025-12-20','2025-12-05','2025-09-25','444.444.444-44','777.777.777-77');

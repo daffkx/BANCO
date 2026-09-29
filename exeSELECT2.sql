@@ -1,8 +1,4 @@
-CREATE DATABASE `clinica_veterinaria`;
-
-USE `clinica_veterinaria`;
-
-CREATE TABLE `tutores` (
+CREATE TABLE `Tutores` (
     `idTutor` INT AUTO_INCREMENT PRIMARY KEY,
     `nome` VARCHAR(100) NOT NULL,
     `email` VARCHAR(100) UNIQUE,
@@ -10,14 +6,14 @@ CREATE TABLE `tutores` (
     `cidade` VARCHAR(50)
 );
 
-CREATE TABLE `veterinarios` (
+CREATE TABLE `Veterinarios` (
     `idVeterinario` INT AUTO_INCREMENT PRIMARY KEY,
     `nome` VARCHAR(100) NOT NULL,
     `crmv` VARCHAR(15) NOT NULL UNIQUE,
     `especialidade` VARCHAR(100) DEFAULT 'Clínico Geral'
 );
 
-CREATE TABLE `animais` (
+CREATE TABLE `Animais` (
     `idAnimal` INT AUTO_INCREMENT PRIMARY KEY,
     `nome` VARCHAR(100) NOT NULL,
     `especie` VARCHAR(50), 
@@ -26,10 +22,10 @@ CREATE TABLE `animais` (
     `peso_kg` DECIMAL(5, 2),
     `idTutor_fk` INT,
     `obs` TEXT, 
-    FOREIGN KEY (`idTutor_fk`) REFERENCES `tutores`(`idTutor`)
+    FOREIGN KEY (`idTutor_fk`) REFERENCES `Tutores`(`idTutor`)
 );
 
-CREATE TABLE `consultas` (
+CREATE TABLE `Consultas` (
     `idConsulta` INT AUTO_INCREMENT PRIMARY KEY,
     `idAnimal_fk` INT,
     `idVeterinario_fk` INT,
@@ -37,24 +33,24 @@ CREATE TABLE `consultas` (
     `motivo` VARCHAR(255),
     `diagnostico` TEXT, 
     `custo` DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (`idAnimal_fk`) REFERENCES `animais`(`idAnimal`),
-    FOREIGN KEY (`idVeterinario_fk`) REFERENCES `veterinarios`(`idVeterinario`)
+    FOREIGN KEY (`idAnimal_fk`) REFERENCES `Animais`(`idAnimal`),
+    FOREIGN KEY (`idVeterinario_fk`) REFERENCES `Veterinarios`(`idVeterinario`)
 );
 
-INSERT INTO `tutores` (`nome`, `email`, `telefone`, `cidade`) VALUES
+INSERT INTO `Tutores` (`nome`, `email`, `telefone`, `cidade`) VALUES
 ('Ana Silva', 'ana.silva@email.com', '(11) 98888-1111', 'São Paulo'),
 ('Bruno Costa', 'bruno.costa@email.com', '(21) 97777-2222', 'Rio de Janeiro'),
 ('Carla Dias', 'carla.dias@email.com', '(31) 96666-3333', 'Belo Horizonte'),
 ('Daniel Moreira', 'daniel.moreira@email.com', '(48) 95555-4444', 'Florianópolis'),
 ('Elisa Fernandes', NULL, '(51) 94444-5555', 'Porto Alegre');
 
-INSERT INTO `veterinarios` (`nome`, `crmv`, `especialidade`) VALUES
+INSERT INTO `Veterinarios` (`nome`, `crmv`, `especialidade`) VALUES
 ('Dr. Ricardo Alves', 'SP-12345', 'Clínico Geral'),
 ('Dra. Beatriz Lima', 'RJ-54321', 'Cirurgiã'),
 ('Dr. Mário Sérgio', 'MG-98765', 'Dermatologista'),
 ('Dra. Lúcia Mendes', 'SP-11223', 'Clínico Geral');
 
-INSERT INTO `animais` (`nome`, `especie`, `raca`, `dtNascimento`, `peso_kg`, `idTutor_fk`, `obs`) VALUES
+INSERT INTO `Animais` (`nome`, `especie`, `raca`, `dtNascimento`, `peso_kg`, `idTutor_fk`, `obs`) VALUES
 ('Thor', 'Cachorro', 'Labrador', '2022-05-15', 28.50, 1, NULL),
 ('Mia', 'Gato', 'Siamês', '2021-10-01', 4.20, 2, 'Alérgica a frutos do mar'),
 ('Loki', 'Cachorro', 'Golden Retriever', '2023-01-20', 25.10, 1, 'Muito agitado'),
@@ -65,7 +61,7 @@ INSERT INTO `animais` (`nome`, `especie`, `raca`, `dtNascimento`, `peso_kg`, `id
 ('Nemo', 'Peixe', 'Peixe-Palhaço', '2024-01-05', 0.10, 3, NULL),
 ('Garfield', 'Gato', 'SRD', '2021-04-01', 6.80, 4, 'Come muito');
 
-INSERT INTO `consultas` (`idAnimal_fk`, `idVeterinario_fk`, `dtConsulta`, `motivo`, `diagnostico`, `custo`) VALUES
+INSERT INTO `Consultas` (`idAnimal_fk`, `idVeterinario_fk`, `dtConsulta`, `motivo`, `diagnostico`, `custo`) VALUES
 (1, 1, '2025-01-10 10:30:00', 'Check-up anual', 'Saudável', 150.00),
 (2, 2, '2025-01-12 14:00:00', 'Vacina V5', 'Aplicação de vacina', 80.00),
 (4, 1, '2025-02-05 09:15:00', 'Problema de pele', 'Dermatite alérgica', 180.00),
@@ -76,150 +72,124 @@ INSERT INTO `consultas` (`idAnimal_fk`, `idVeterinario_fk`, `dtConsulta`, `motiv
 (2, 1, '2025-05-05 15:30:00', 'Espirros', 'Rinotraqueíte felina', 170.00),
 (6, 3, '2025-05-15 08:30:00', 'Consulta dermatológica', 'Revisão da dermatite', 120.00);
 
--- SELECT
---      `nome` AS 'Nome do Produto'
---      `fabricante` AS 'Marca
---      `dtcadastro` AS 'Data de Cadastro'
--- FROM `produtos`;
-
--- SELECT `nome`, `preco`
--- FROM `produtos` ORDER BY `nome` ASC;
-
--- SELECT
---      `nome` AS `Nome`
---      `preco` AS `Preço`
--- FROM `produtos` ORDER BY `preco` DESC;
-
--- LIKE
--- SELECT * FROM `produtos` WHERE `nome` LIKE 'laptop%';
-
--- BETWEEN
--- SELECT * FROM `produtos` WHERE `estoque` BETWEEN 15 AND 30 ORDER BY `estoque`;
-
-------------------------------------
--- EXERCÍCIOS DE SELEÇÃO DE DADOS --
-------------------------------------
+--------------------------------------------
+-- EXERCÍCIOS DE SELEÇÃO DE DADOS PARTE 2 --
+--------------------------------------------
 
 -- EXE1 ---------
 
-SELECT *
-FROM `animais`;
+SELECT 
+    `nome` AS 'Nome do tutor',
+    `cidade` AS 'Cidade'
+FROM `Tutores`;
 
 -- EXE2 ---------
 
-SELECT `nome`, `email`, `cidade`
-FROM `tutores`;
+SELECT
+    `nome` AS 'Veterinário(a)',
+    `especialidade` AS 'Especialidade'
+FROM `Veterinarios`;
 
 -- EXE3 ---------
 
-SELECT `nome`, `especialidade`
-FROM `veterinarios`;
+SELECT
+    `nome` AS 'Nome do Animal',
+    `peso_kg` AS 'Peso (kg)'
+FROM `Animais`;
 
 -- EXE4 ---------
 
-SELECT `motivo`, `custo`
-FROM `consultas`;
+SELECT
+    `dtConsulta` AS 'Data da Consulta',
+    `custo` AS 'Valor (R$)'
+FROM `Consultas`;
 
 -- EXE5 ---------
 
-SELECT *
-FROM `animais`
-WHERE `especie` = 'gato';
+SELECT `nome`
+FROM `Tutores` ORDER BY `nome` ASC;
 
 -- EXE6 ---------
 
-SELECT `nome`, `peso_kg`
-FROM `animais`
-WHERE `peso_kg` > 20
+SELECT `nome`
+FROM `Animais` ORDER BY `nome` DESC;
 
 -- EXE7 ---------
 
-SELECT *
-FROM `consultas`
-WHERE `custo` = 150.00;
+SELECT `nome`, `peso_kg`
+FROM `Animais` ORDER BY `peso_kg` DESC;
 
 -- EXE8 ---------
 
-SELECT `nome`, `dtNascimento`
-FROM `animais`
-WHERE `dtNascimento` >= '2022-01-01';
+SELECT `motivo`, `custo`
+FROM `Consultas` ORDER BY `custo` ASC;
 
 -- EXE9 ---------
 
-SELECT `nome`, `raca`
-FROM `animais`
-WHERE `raca` <> 'labrador';
+SELECT `nome`, `dtNascimento`
+FROM `Animais` ORDER BY `dtNascimento` DESC;
 
 -- EXE10 ---------
 
-SELECT *
-FROM `animais`
-WHERE `especie` = 'cachorro' 
-AND `peso_kg` < 10;
+SELECT `nome`, `dtNascimento`
+FROM `Animais` ORDER BY `dtNascimento` ASC;
 
 -- EXE11 ---------
 
-SELECT *
-FROM `consultas`
-WHERE `dtConsulta` >= '2025-01-01'
-AND `dtConsultas` < '2026-01-01'
-AND `custo` > 100.00;
+SELECT `motivo`, `dtConsulta`
+FROM `Consultas` ORDER BY `dtConsulta` DESC;
 
 -- EXE12 ---------
 
-SELECT *
-FROM `animais` 
-WHERE `especie` = `cachorro`
-OR `especie` = 'gato';
+SELECT `nome`, `especie`
+FROM `Animais` ORDER BY `especie` ASC, `nome` ASC;
 
 -- EXE13 ---------
 
 SELECT *
-FROM `tutores`
-WHERE `cidade` = 'são paulo'
-OR `cidade` = 'rio de janeiro';
+FROM `Animais` ORDER BY `idAnimal` ASC LIMIT 5;
 
 -- EXE14 ---------
 
-SELECT * 
-FROM `animais`
-WHERE `especie` = 'cachorro'
-AND `peso_kg` > 30
-OR `especie` = 'gato'
-AND `peso_kg` < 5;
+SELECT *
+FROM `Consultas` ORDER BY `idConsulta` ASC LIMIT 3;
 
 -- EXE15 ---------
 
-SELECT `nome`, `telefone`
-FROM `tutores`
-WHERE `nome` LIKE 'A%';
+SELECT *
+FROM `Tutores` ORDER BY `idTutor` ASC LIMIT 2;
 
 -- EXE16 ---------
 
-SELECT `nome`, `raca`
-FROM `animais`
-WHERE `raca` = '%retriever%';
+SELECT *
+FROM `Tutores` ORDER BY `idTutor` ASC LIMIT 2, 2;
 
 -- EXE17 ---------
 
-SELECT `nome`, `email`, `cidade` 
-FROM `tutores`
-WHERE `cidade`IN ('Belo Horizonte', 'Florianópolis', 'Porto Alegre');
+SELECT 
+    `nome` AS 'Animal Mais Pesado',
+    `peso_kg` AS 'Peso (kg)'
+FROM `Animais` ORDER BY `peso_kg` DESC LIMIT 1;
 
 -- EXE18 ---------
 
-SELECT `idAnimal_fk`, `custo`
-FROM `consultas`
-WHERE `custo` BETWEEN 100.00 AND 200.00; 
+SELECT
+    `motivo` AS 'Motivo',
+    `diagnostico` AS 'Diagnóstico',
+    `custo` AS 'Valor'
+FROM `Consultas` ORDER BY `custo` DESC LIMIT 1;
 
 -- EXE19 ---------
 
-SELECT *
-FROM `animais`
-WHERE `obs` IS NULL;
+SELECT
+    `nome` AS 'Nome',
+    `especie` AS 'Espécie',
+    `dtNascimento` AS 'Nascimento'
+FROM `Animais` ORDER BY `dtNascimento` DESC LIMIT 3;
 
 -- EXE20 ---------
 
-SELECT *
-FROM `consultas`
-WHERE `diagnostico` IS NOT NULL;
+SELECT
+    `dtConsulta` AS 'Data',
+    `motivo` AS 'Motivo'
+FROM `Consultas` ORDER BY `dtConsulta` ASC LIMIT 2;

@@ -96,6 +96,61 @@ INSERT INTO `consultas` (`idAnimal_fk`, `idVeterinario_fk`, `dtConsulta`, `motiv
 -- BETWEEN
 -- SELECT * FROM `produtos` WHERE `estoque` BETWEEN 15 AND 30 ORDER BY `estoque`;
 
+-- INNER JOIN
+-- SELECT 
+--      `A`.`nome` AS 'Animal',
+--      `T`.`nome` AS 'Tutor',
+--      `T`.`cidade` AS 'Cidade'
+-- FROM
+--      `Animais` AS `A`      
+-- INNER JOIN
+--      `Tutores` AS `T` ON A.idTutor_fk = T.idTutor
+Exercícios com LEFT JOIN
+5. Listar TODOS os Produtos
+O LEFT JOIN garante que todos os produtos apareçam, mesmo que algum deles não tenha categoria.
+
+SELECT 
+    p.nome AS produto,
+    c.nome AS categoria
+FROM produtos p
+LEFT JOIN categorias c
+    ON p.idCategoria_fk = c.idCategoria;
+
+Com os dados atuais, todos os produtos possuem categoria.
+
+6. Encontrar Produtos SEM Categoria
+Aqui usamos LEFT JOIN e filtramos os registros em que a categoria não foi encontrada.
+
+SELECT 
+    p.nome AS produto
+FROM produtos p
+LEFT JOIN categorias c
+    ON p.idCategoria_fk = c.idCategoria
+WHERE p.idCategoria_fk IS NULL;
+
+Resultado com o script atual: nenhum registro, pois todos os produtos possuem uma categoria.
+
+Exercícios com RIGHT JOIN
+7. Listar TODAS as Categorias
+Como o foco é garantir que todas as categorias apareçam, mesmo aquelas sem produtos, podemos colocar categorias à direita do RIGHT JOIN.
+
+SELECT 
+    c.nome AS categoria,
+    p.nome AS produto
+FROM produtos p
+RIGHT JOIN categorias c
+    ON p.idCategoria_fk = c.idCategoria;
+
+Se existir uma categoria sem produtos, ela aparecerá com NULL na coluna produto.
+
+8. Encontrar Categorias VAZIAS
+SELECT 
+    c.nome AS categoria
+FROM produtos p
+RIGHT JOIN categorias c
+    ON p.idCategoria_fk = c.idCategoria
+WHERE p.idProduto IS NULL;
+
 ------------------------------------
 -- EXERCÍCIOS DE SELEÇÃO DE DADOS --
 ------------------------------------

@@ -80,3 +80,21 @@ FROM
 INNER JOIN 
     categorias c ON p.idCategoria_fk = c.idCategoria WHERE p.preco > 2000.00;
 
+-- EXE5 ---------
+
+SELECT
+    p.nome AS produto,
+    c.nome AS categoria
+FROM 
+    produtos p
+LEFT JOIN 
+    categorias c ON p.idCategoria_fk = c.idCategoria;
+
+-- EXE6 ---------
+
+SELECT
+    p.nome AS produto
+FROM 
+    produtos p
+LEFT JOIN 
+    categorias c ON p.idCategoria_fk = c.idCategoria WHERE p.idCategoria_fk IS NULL;

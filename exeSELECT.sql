@@ -105,51 +105,6 @@ INSERT INTO `consultas` (`idAnimal_fk`, `idVeterinario_fk`, `dtConsulta`, `motiv
 --      `Animais` AS `A`      
 -- INNER JOIN
 --      `Tutores` AS `T` ON A.idTutor_fk = T.idTutor
-Exercícios com LEFT JOIN
-5. Listar TODOS os Produtos
-O LEFT JOIN garante que todos os produtos apareçam, mesmo que algum deles não tenha categoria.
-
-SELECT 
-    p.nome AS produto,
-    c.nome AS categoria
-FROM produtos p
-LEFT JOIN categorias c
-    ON p.idCategoria_fk = c.idCategoria;
-
-Com os dados atuais, todos os produtos possuem categoria.
-
-6. Encontrar Produtos SEM Categoria
-Aqui usamos LEFT JOIN e filtramos os registros em que a categoria não foi encontrada.
-
-SELECT 
-    p.nome AS produto
-FROM produtos p
-LEFT JOIN categorias c
-    ON p.idCategoria_fk = c.idCategoria
-WHERE p.idCategoria_fk IS NULL;
-
-Resultado com o script atual: nenhum registro, pois todos os produtos possuem uma categoria.
-
-Exercícios com RIGHT JOIN
-7. Listar TODAS as Categorias
-Como o foco é garantir que todas as categorias apareçam, mesmo aquelas sem produtos, podemos colocar categorias à direita do RIGHT JOIN.
-
-SELECT 
-    c.nome AS categoria,
-    p.nome AS produto
-FROM produtos p
-RIGHT JOIN categorias c
-    ON p.idCategoria_fk = c.idCategoria;
-
-Se existir uma categoria sem produtos, ela aparecerá com NULL na coluna produto.
-
-8. Encontrar Categorias VAZIAS
-SELECT 
-    c.nome AS categoria
-FROM produtos p
-RIGHT JOIN categorias c
-    ON p.idCategoria_fk = c.idCategoria
-WHERE p.idProduto IS NULL;
 
 ------------------------------------
 -- EXERCÍCIOS DE SELEÇÃO DE DADOS --
@@ -278,3 +233,41 @@ WHERE `obs` IS NULL;
 SELECT *
 FROM `consultas`
 WHERE `diagnostico` IS NOT NULL;
+
+-- EXE5 ---------
+
+SELECT
+    p.nome AS produto,
+    c.nome AS categoria
+FROM 
+    produtos p
+LEFT JOIN 
+    categorias c ON p.idCategoria_fk = c.idCategoria;
+
+-- EXE6 ---------
+
+SELECT
+    p.nome AS produto
+FROM 
+    produtos p
+LEFT JOIN 
+    categorias c ON p.idCategoria_fk = c.idCategoria WHERE p.idCategoria_fk IS NULL;
+
+-- EXE7 ---------
+
+SELECT
+    c.nome AS categoria,
+    p.nome AS produto
+FROM 
+    produtos p
+RIGHT JOIN 
+    categorias c ON p.idCategoria_fk = c.idCategoria;
+
+-- EXE8 ---------
+
+SELECT
+    c.nome AS categoria
+FROM 
+    produtos p
+RIGHT JOIN 
+    categorias c ON p.idCategoria_fk = c.idCategoria WHERE p.idProduto IS NULL;

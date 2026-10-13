@@ -35,9 +35,9 @@ INSERT INTO `produtos` (`nome`, `fabricante`, `preco`, `estoque`, `idCategoria_f
 ('Mouse Pad', NULL, 50.00, 200, 3, '2024-03-06'),
 ('Monitor 4K', 'ViewMax', 2700.00, 12, 4, '2024-05-15');
 
-------------------------------------
--- EXERCÍCIOS DE JOIN --------------
-------------------------------------
+------------------------
+-- EXERCÍCIOS DE JOIN --
+------------------------
 
 -- EXE1 ---------
 
@@ -79,3 +79,4 @@ FROM
     produtos p
 INNER JOIN 
     categorias c ON p.idCategoria_fk = c.idCategoria WHERE p.preco > 2000.00;
+
